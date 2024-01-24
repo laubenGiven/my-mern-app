@@ -1,27 +1,25 @@
+
+// /backend/routes/userRoutes.js
 import express from 'express';
-import {
-  createUser,
-  getUser,
-  getAllUsers,
-  updateUser,
-  deleteUser
-} from '../Controllers/userController.mjs';
+
+import { registerUser, getUser, getAllUsers, updateUser,uploadUserPhoto, deleteUser } from '../controllers/userController.mjs';
+
 
 const router = express.Router();
 
 // Create a new user
-router.post('/users', createUser);
+router.post('/register',uploadUserPhoto, registerUser);
 
 // Retrieve all users
-router.get('/users', getAllUsers);
+router.get('/showall', getAllUsers);
 
 // Retrieve a single user by id
-router.get('/users/:userId', getUser);
+router.get('/show/:userId', getUser);
 
 // Update a user by id
-router.patch('/users/:userId', updateUser);
+router.patch('/update/:userId', updateUser);
 
 // Delete a user by id
-router.delete('/users/:userId', deleteUser);
+router.delete('/delete/:userId', deleteUser);
 
 export default router;

@@ -1,0 +1,7 @@
+{"level":"info","message":"GET /","service":"user-service"}
+{"level":"info","message":"GET /api/users/registerUser","service":"user-service"}
+{"level":"info","message":"GET /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}

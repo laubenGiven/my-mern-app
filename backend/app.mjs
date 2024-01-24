@@ -6,7 +6,8 @@ import cors from "cors";
 import requestLoggerMiddleware from "./config/request-logger-middleware.mjs";
 import logger from "./config/logger.mjs";
 import bodyParser from "body-parser";
-import userRoutes from './routes/userRoutes.js';
+import userRoutes from './routes/userRoutes.mjs';
+import errorHandler from "./middleware/errorHandler.mjs";
 
 
 
@@ -27,6 +28,8 @@ app.use('/public', express.static('public')); // Serve static files
 
 // Use request logging middleware
 app.use(requestLoggerMiddleware);
+app.use(errorHandler);
+
 
 
 // Error handling middleware, always at the end of the middleware stack
