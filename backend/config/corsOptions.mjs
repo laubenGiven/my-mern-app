@@ -8,7 +8,7 @@ const corsOptions = {
         callback(new Error("Not allowed by CORS"));
       }
     },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET,HEAD,PUT,PATCH,POST,DELETE','OPTIONS'], // Allow specific HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
     optionsSuccessStatus: 200 // For legacy browser support

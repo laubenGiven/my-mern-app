@@ -7,9 +7,9 @@ import upload from '../config/multerConfig.mjs'
 export const uploadUserPhoto = upload.single('photo');
 
 // Create a new user
-export const registerUser = async (req, res, ) => {
+export const registerUser = async (req, res,) => {
   try {
-    const { firstName,lastName, email, password } = req.body;
+    const { firstName, lastName, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const existingUser = await User.findOne({ email });
@@ -122,3 +122,6 @@ export const deleteUser = async (req, res) => {
     res.status(500).json({ message: 'Error deleting user', error: error.message });
   }
 };
+
+
+
