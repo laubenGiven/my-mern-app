@@ -3,11 +3,14 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const mongoUrl = process.env.MONGO_URL;
+const { DB_USERNAME, DB_PASSWORD, DB_NAME } = process.env;
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(mongoUrl);
+    const conn = await mongoose.connect(`mongodb://${DB_USERNAME}:${DB_PASSWORD}@localhost:27017/${DB_NAME}?authSource=admin`, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(`Error: ${error.message}`);
