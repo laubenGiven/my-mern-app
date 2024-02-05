@@ -5,3 +5,14 @@
 {"level":"info","message":"POST /api/users/register","service":"user-service"}
 {"level":"info","message":"POST /api/users/register","service":"user-service"}
 {"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register?firstName=Mpairwe&lastName=Lauben&email=mpairwelauben22@gmail.com&password=alien123.com","service":"user-service"}
+{"level":"info","message":"POST /api/users/register?firstName=Mpairwe&lastName=Lauben&email=mpairwelauben22@gmail.com&password=alien123.com","service":"user-service"}
+{"level":"info","message":"POST /api/users/register?firstName=Mpairwe&lastName=Lauben&email=mpairwelauben22@gmail.com&password=alien123.com","service":"user-service"}
+{"level":"info","message":"POST /api/users/register?firstName=Mpairwe&lastName=Lauben&email=mpairwelauben22@gmail.com&password=alien123.com","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"GET /","service":"user-service"}
+{"level":"info","message":"GET /favicon.ico","service":"user-service"}
