@@ -9,7 +9,7 @@ export const uploadUserPhoto = upload.single('photo');
 // Create a new user
 export const registerUser = async (req, res,) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email,role, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const existingUser = await User.findOne({ email });
@@ -21,6 +21,7 @@ export const registerUser = async (req, res,) => {
       firstName,
       lastName,
       email,
+      role,
       password: hashedPassword,
       photo: req.file ? req.file.path : ''
     });
@@ -33,6 +34,7 @@ export const registerUser = async (req, res,) => {
         id: newUser._id,
         name: newUser.name,
         email: newUser.email,
+        role: newUser.role,
         photo: newUser.photo
       }
     });
@@ -67,9 +69,9 @@ export const getAllUsers = async (req, res) => {
 // Update a user by id (including photo and password)
 export const updateUser = async (req, res) => {
   const { userId } = req.params;
-  const { name, email, password } = req.body;
+  const { name, email,role, password } = req.body;
   const updates = Object.keys(req.body);
-  const allowedUpdates = ['name', 'email', 'password', 'photo'];
+  const allowedUpdates = ['name', 'email','role', 'password', 'photo'];
   const isValidOperation = updates.every(update => allowedUpdates.includes(update));
 
   if (!isValidOperation) {
@@ -84,6 +86,7 @@ export const updateUser = async (req, res) => {
 
     if (name) user.name = name;
     if (email) user.email = email;
+    if (role) user.role = role;
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 12);
       user.password = hashedPassword;
@@ -98,6 +101,7 @@ export const updateUser = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        role: user.role,
         photo: user.photo
       }
     });
@@ -120,6 +124,23 @@ export const deleteUser = async (req, res) => {
     res.json({ message: 'User successfully deleted', userId: req.params.userId });
   } catch (error) {
     res.status(500).json({ message: 'Error deleting user', error: error.message });
+  }
+};
+
+
+// Check if the email already exists
+ export const checkEmail = async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    const user = await User.findOne({ email });
+
+    const exists = !!user;
+
+    res.json({ exists });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 

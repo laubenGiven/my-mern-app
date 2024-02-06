@@ -2,7 +2,7 @@
 // /backend/routes/userRoutes.js
 import express from 'express';
 
-import { registerUser, getUser, getAllUsers, updateUser,uploadUserPhoto, deleteUser } from '../controllers/userController.mjs';
+import { registerUser, getUser, getAllUsers, updateUser,uploadUserPhoto, deleteUser, checkEmail } from '../controllers/userController.mjs';
 
 
 const router = express.Router();
@@ -17,9 +17,11 @@ router.get('/showall', getAllUsers);
 router.get('/show/:userId', getUser);
 
 // Update a user by id
-router.patch('/update/:userId', updateUser);
+router.patch('/edit/:userId', updateUser);
 
 // Delete a user by id
 router.delete('/delete/:userId', deleteUser);
+// Endpoint to check if the email already exists
+router.get('/check-email/:email', checkEmail);
 
 export default router;

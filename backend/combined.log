@@ -16,3 +16,16 @@
 {"level":"info","message":"POST /api/users/register","service":"user-service"}
 {"level":"info","message":"GET /","service":"user-service"}
 {"level":"info","message":"GET /favicon.ico","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"GET /api/users/checkEmail/adams@gmail.com","service":"user-service"}
