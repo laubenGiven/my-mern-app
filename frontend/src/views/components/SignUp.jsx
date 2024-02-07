@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import axios from 'axios';
 
 const SignUp = () => {
@@ -14,6 +14,31 @@ const SignUp = () => {
   const [registrationStatus, setRegistrationStatus] = useState(null);
 
   const fileInputRef = useRef();
+
+  // Add a ref to store the current timeout to clear it on unmount
+  const timeoutRef = useRef();
+
+  // Clear the timeout when the component unmounts
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const setMessageWithTimeout = (type, duration = 5000) => {
+    setRegistrationStatus(type);
+    // Clear the existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    // Set a new timeout
+    timeoutRef.current = setTimeout(() => {
+      setRegistrationStatus(null);
+    }, duration);
+  };
+
 
   const handleInputChange = (e) => {
     setFormData({
@@ -58,6 +83,7 @@ const SignUp = () => {
 
   const handleRegistration = async (e) => {
     e.preventDefault();
+    await handleCheckEmail(); // Check email availability before attempting registration
 
     // Add password validation logic if needed
     if (formData.password !== formData.confirmPassword) {
@@ -87,33 +113,38 @@ const SignUp = () => {
       });
 
       console.log(response.data);
-
-      await handleCheckEmail();
-      // Handle success
-      setRegistrationStatus('success');
-      setTimeout(() => {
-        setRegistrationStatus(null);
-      }, 5000);
+      setMessageWithTimeout('success');
     } catch (error) {
       console.error(error.response.data);
 
       // Handle error
-      setRegistrationStatus('error');
-      setTimeout(() => {
-        setRegistrationStatus(null);
-      }, 5000);
+      setMessageWithTimeout('error');
     }
   };
 
   return (
     <>
-      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
+      
+      {registrationStatus === 'success' && (
+        <div className="mt-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+          <strong className="font-bold">Success!</strong>
+          <span className="block sm:inline"> Registration successful.</span>
+        </div>
+      )}
+
+      {registrationStatus === 'error' && (
+        <div className="mt-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+          <strong className="font-bold">Error!</strong>
+          <span className="block sm:inline"> Registration failed. Please try again.</span> {/* Adjust message as needed */}
+        </div>
+      )}
+      <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-white">
         Signup For Free
       </h2>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={handleRegistration}>
-          <div className="grid grid-cols-2 gap-4">
+      <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form className="space-y-2" onSubmit={handleRegistration}>
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <label htmlFor="firstName" className="block text-sm font-medium leading-6 text-white">
                 First Name
@@ -167,6 +198,7 @@ const SignUp = () => {
               Role
             </label>
             <select
+             id="role" 
   name="role"
   value={formData.role}
   onChange={handleInputChange}
@@ -242,28 +274,8 @@ const SignUp = () => {
         </form>
 
 
-{registrationStatus === 'error' && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-            <strong className="font-bold">Error!</strong>
-            <span className="block sm:inline"> Email already exists.</span>
-          </div>
-        )}
 
-        {registrationStatus === 'success' && (
-          <div className="mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-            <strong className="font-bold">Success!</strong>
-            <span className="block sm:inline"> Registration successful.</span>
-          </div>
-        )}
-
-        {registrationStatus === 'error' && (
-          <div className="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-            <strong className="font-bold">Error!</strong>
-            <span className="block sm:inline"> Registration failed. Please try again.</span>
-          </div>
-        )}
-
-        <p className="mt-10 text-center text-sm text-gray-200">
+        <p className="mt-4 text-center text-sm text-gray-200">
           Already a member?{' '}
           <a href="#" className="font-semibold leading-6 text-indigo-200 hover:text-indigo-500">
             Login

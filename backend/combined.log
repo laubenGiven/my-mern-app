@@ -29,3 +29,13 @@
 {"level":"info","message":"POST /api/users/register","service":"user-service"}
 {"level":"info","message":"POST /api/users/register","service":"user-service"}
 {"level":"info","message":"GET /api/users/checkEmail/adams@gmail.com","service":"user-service"}
+{"level":"info","message":"GET /api/users/checkEmail/emmma@gmail.com","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"GET /api/users/checkEmail/emmma@gmail.com","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"GET /api/users/checkEmail/emmma@gmail.com","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"GET /api/users/checkEmail/emmma@gmail.com","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
+{"level":"info","message":"GET /api/users/checkEmail/emmma@gmail.com","service":"user-service"}
+{"level":"info","message":"POST /api/users/register","service":"user-service"}
